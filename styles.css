@@ -1,0 +1,179 @@
+:root {
+  --ink: #3a2a17;
+  --paper-light: #efe0bd;
+  --paper-mid: #e2cd9e;
+  --paper-dark: #cbb07c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4vmin;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 50% 0%, #6b5232 0%, #3f2f1b 55%, #241a0e 100%);
+}
+
+.parchment {
+  position: relative;
+  width: min(760px, 100%);
+  padding: clamp(24px, 5vmin, 56px);
+  border-radius: 4px 10px 6px 12px / 12px 5px 10px 4px;
+  background-color: var(--paper-mid);
+  background-image:
+    radial-gradient(ellipse at 18% 12%, rgba(126, 92, 43, 0.28), transparent 42%),
+    radial-gradient(ellipse at 88% 8%, rgba(120, 84, 38, 0.22), transparent 38%),
+    radial-gradient(ellipse at 72% 92%, rgba(110, 78, 35, 0.3), transparent 46%),
+    radial-gradient(ellipse at 8% 84%, rgba(126, 92, 43, 0.26), transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 248, 224, 0.55), transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(90, 66, 33, 0.35),
+    inset 0 0 70px rgba(94, 66, 28, 0.35),
+    inset 0 0 14px rgba(60, 40, 15, 0.25);
+}
+
+.parchment::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid rgba(96, 68, 32, 0.4);
+  border-radius: 3px 9px 5px 11px / 11px 4px 9px 3px;
+  pointer-events: none;
+}
+
+.parchment::after {
+  content: "";
+  position: absolute;
+  inset: 19px;
+  border: 1px solid rgba(96, 68, 32, 0.22);
+  border-radius: 8px 4px 10px 5px / 5px 10px 4px 8px;
+  pointer-events: none;
+}
+
+.lede {
+  text-align: center;
+  margin-bottom: clamp(20px, 4vmin, 40px);
+}
+
+h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.5rem, 4.2vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #4a3115;
+  text-shadow: 0 1px 0 rgba(255, 248, 222, 0.7);
+}
+
+.subtitle {
+  margin: 0;
+  font-style: italic;
+  font-size: clamp(0.8rem, 2.2vw, 1rem);
+  color: #6b5026;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(14px, 3.5vmin, 34px);
+}
+
+.seal-btn {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  transition: transform 0.12s ease;
+}
+
+.seal-btn .seal {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: saturate(1.05);
+  transition: transform 0.14s ease, filter 0.14s ease;
+}
+
+.seal-btn:hover .seal {
+  transform: translateY(-3px) scale(1.02);
+  filter: saturate(1.15) brightness(1.04);
+}
+
+.seal-btn:focus-visible {
+  outline: none;
+}
+
+.seal-btn:focus-visible .seal {
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0)) brightness(1.08);
+  outline: 3px dashed rgba(90, 60, 20, 0.55);
+  outline-offset: 8px;
+  border-radius: 50%;
+}
+
+.seal-btn.pressed .seal {
+  transform: translateY(2px) scale(0.965);
+  filter: saturate(1.2) brightness(0.95);
+}
+
+.seal-btn .wax-text {
+  font-family: "Iowan Old Style", Palatino, Georgia, serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  fill: #f6ddc2;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.colophon {
+  margin-top: clamp(20px, 4vmin, 38px);
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(90, 66, 30, 0.7);
+}
+
+@media (max-width: 520px) {
+  .grid {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seal-btn,
+  .seal-btn .seal {
+    transition: none;
+  }
+}
